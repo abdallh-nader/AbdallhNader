@@ -134,3 +134,17 @@ h2::after { content: ""; display: block; width: 48px; height: 3px; margin-top: .
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
 }
+.cv-link-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.cv-link-btn:hover {
+  color: #38bdf8;
+}

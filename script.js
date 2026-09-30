@@ -6,6 +6,7 @@ const CONFIG = {
   github: "https://github.com/abdallh-nader",
   email: "mailto:abdallhnader2004@gmail.com",
   linktree: "https://linktr.ee/abdallhnader",
+  MYCV: "https://drive.google.com/file/d/1g0k7r6J4j3n5X8l9K2F3L4M5N6O7P8Q9/view?usp=sharing",
   skills: [ "Data Structures ","Algorithms","Networking", "Python", "Java", "SQL","React", "HTML5", "CSS3", "JavaScript", "Git"]
 };
 
@@ -23,12 +24,12 @@ const TEXT = {
     view: "View Project",
     contact_h: "Let's Connect",
     contact_p: "Have a question or an opportunity in mind? Reach out through any of these links.",
-    email: "Email", linkedin: "LinkedIn", github: "GitHub", linktree: "SocialLinks"
+    email: "Email", linkedin: "LinkedIn", github: "GitHub", linktree: "SocialLinks",MYCV: "My CV"
   },
   ar: {
     nav_home: "الرئيسية", nav_about: "نبذة عني", nav_projects: "المشاريع", nav_contact: "تواصل معي",
     name: "عبدالله نادر",
-    title: "خريج علوم الحاسوب | مطوّر",
+    title: " علوم الحاسوب | مطوّر",
     intro: "أنا خريج علوم حاسوب مهتم بتطوير البرمجيات والتكنولوجيا. أحب تحويل الأفكار إلى مشاريع عملية ومفيدة.",
     cta: "شاهد مشاريعي",
     about_h: "نبذة عني",
@@ -38,7 +39,7 @@ const TEXT = {
     view: "عرض المشروع",
     contact_h: "لنتواصل",
     contact_p: "لديك سؤال أو فرصة؟ تواصل معي عبر أي من الروابط التالية.",
-    email: "البريد الإلكتروني", linkedin: "لينكدإن", github: "جيت هاب",linktree: "روابط التواصل"
+    email: "البريد الإلكتروني", linkedin: "لينكدإن", github: "جيت هاب",linktree: "روابط التواصل",MYCV: "سيرتي الذاتية"
   }
 };
 
@@ -84,7 +85,8 @@ function links() {
     { label: t.email, href: `mailto:${CONFIG.email}`, external: false },
     { label: t.linktree, href: CONFIG.linktree, external: true },
     { label: t.linkedin, href: CONFIG.linkedin, external: true },
-    { label: t.github, href: CONFIG.github, external: true }
+    { label: t.github, href: CONFIG.github, external: true },
+    { label: t.MYCV, href: "MyCV.pdf", external: true }
    
 ];
 }
