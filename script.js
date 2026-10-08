@@ -7,7 +7,7 @@ const CONFIG = {
   email: "mailto:abdallhnader2004@gmail.com",
   linktree: "https://linktr.ee/abdallhnader",
   MYCV: "https://drive.google.com/file/d/1g0k7r6J4j3n5X8l9K2F3L4M5N6O7P8Q9/view?usp=sharing",
-  skills: [ "Data Structures ","Algorithms","Networking", "Python", "Java", "SQL","React", "HTML5", "CSS3", "JavaScript", "Git"]
+  skills: [ "Data Structures ","Algorithms","Networking", "Python", "Java","ASP.NET", "SQL","C#","React", "HTML5", "CSS3", "JavaScript", "Git", "Docker", "REST APIs", "Agile Methodologies"]
 };
 
 const TEXT = {
@@ -71,6 +71,15 @@ const PROJECTS = [
     },
     image: "project3.jpg",
     url: "https://safer-tech.vercel.app/"
+  },
+    {
+    title: { en: "DUKKAN", ar: " دُكّان" },
+    description: {
+      en: "A modern e-commerce web application for online shopping, featuring an interactive shopping cart, seamless checkout flow, and an admin dashboard for product and order management.",
+      ar: "منصة تسوق إلكترونية متكاملة لبيع المنتجات، تتميز بتصميم عصري وسلة شراء تفاعلية، مع لوحة تحكم كاملة لإدارة المنتجات ومتابعة الطلبات."
+    },
+    image: "project4.jpg",
+    url: "https://myshop-xfh8.onrender.com/#"
   }
 ];
 
