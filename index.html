@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Abdallh Nader | Computer Science  &amp; Developer</title>
+  <title>Abdallh Nader | Computer Science &amp; Developer</title>
   <meta name="description" content="Personal portfolio of Abdallh Nader, showcasing projects and development work.">
   <meta name="keywords" content="Abdallh Nader, portfolio, computer science, software developer, web development">
-  <meta name="theme-color" content="#0B1120">
+  <meta name="theme-color" content="#0b0f19">
   <!-- Update SITE_URL below once the site is published -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Abdallh Nader | Computer Science Graduate &amp; Developer">
@@ -18,7 +18,10 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="site-header">
+  <!-- Animated particle network (drawn by script.js) -->
+  <canvas id="bg" aria-hidden="true"></canvas>
+
+  <header class="site-header" id="header">
     <nav class="nav" aria-label="Main">
       <a class="brand" href="#home" aria-label="Abdallh Nader">AN</a>
       <ul class="nav-links">
@@ -42,11 +45,12 @@
       </div>
       <div class="hero-text">
         <h1 data-i18n="name">Abdallh Nader</h1>
-        <p class="title" data-i18n="title">Computer Science Graduate | Developer</p>
+        <!-- Typewriter: phrases come from TEXT[lang].roles in script.js -->
+        <p class="title" aria-live="off"><span id="typed">Computer Science Graduate</span><span class="caret" aria-hidden="true"></span></p>
         <p class="intro" data-i18n="intro"></p>
         <div class="hero-actions">
           <a class="btn" href="#projects" data-i18n="cta">View My Projects</a>
-          <div class="social" data-social></div> 
+          <div class="social" data-social></div>
         </div>
       </div>
     </section>
@@ -55,6 +59,7 @@
       <h2 data-i18n="about_h">About</h2>
       <p class="lead" data-i18n="about_p1"></p>
       <p class="lead" data-i18n="about_p2"></p>
+      <div class="filters" id="filters" role="group" aria-label="Skill categories"></div>
       <ul class="skills" id="skills" aria-label="Skills"></ul>
     </section>
 
@@ -75,7 +80,28 @@
     <div class="social" data-social></div>
   </footer>
 
+  <!-- Project details modal (filled by openModal() in script.js) -->
+  <dialog id="modal" class="modal" aria-labelledby="m-title">
+    <div class="modal-box glass">
+      <button class="modal-close" type="button" id="m-close" aria-label="Close">&times;</button>
+      <div class="modal-media"><img id="m-img" alt="" width="600" height="375"></div>
+      <div class="modal-body">
+        <h3 id="m-title"></h3>
+        <p id="m-desc"></p>
+        <h4 data-i18n="m_stack">Tech stack</h4>
+        <ul class="badges" id="m-stack"></ul>
+        <div class="modal-actions" id="m-actions"></div>
+        <div class="preview" id="m-preview"></div>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="tooltip" id="tooltip" role="tooltip"></div>
+
+  <button class="to-top" id="to-top" type="button" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
   <script src="script.js"></script>
-  
 </body>
 </html>
