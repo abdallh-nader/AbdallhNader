@@ -1,6 +1,16 @@
 /* ==========================================================
    EDIT HERE: personal info, links, skills, texts and projects
    ========================================================== */
+   // دالة إرسال إشعار تلغرام عند كبس الزر
+function sendTelegramNotification(projectName) {
+  const token = "8872807344:AAHNMN4xtbrZOl4Bgff3x2BGRV5nAns8V3o"; // ضع توكن البوت هنا
+  const chatId = "857860691";           // ضع رقم ID حسابك هنا
+  
+  const text = `🚨 **تنبيه زائر جديد!**\nقام شخص بالضغط على مشروع: (${projectName}) في موقعك.`;
+  const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}&parse_mode=Markdown`;
+
+  fetch(url).catch(err => console.error("خطأ في إرسال الإشعار:", err));
+}
 const CONFIG = {
   linkedin: "https://www.linkedin.com/in/abdallh-nader-708b36380?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
   github: "https://github.com/abdallh-nader",
@@ -182,7 +192,17 @@ function initCards() {
   const grid = $("#project-grid");
   grid.addEventListener("click", e => {
     const card = e.target.closest(".card");
-    if (card) openModal(+card.dataset.i);
+    if (card) {
+      const projectIndex = +card.dataset.i;
+      
+      // 🔔 إرسال الإشعار باسم المشروع المضغوط عليه
+      if (PROJECTS[projectIndex]) {
+        const projectName = PROJECTS[projectIndex].title[lang] || PROJECTS[projectIndex].title.en;
+        sendTelegramNotification(projectName);
+      }
+
+      openModal(projectIndex);
+    }
   });
   if (reduceMotion) return;
   grid.addEventListener("pointermove", e => {
