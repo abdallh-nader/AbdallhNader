@@ -451,10 +451,6 @@ function setLang(next) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  
-  // 🔔 إرسال الإشعار فور فتح الموقع
-  sendVisitorNotification();
-
   let saved = "en";
   try { saved = localStorage.getItem("lang") === "ar" ? "ar" : "en"; } catch (e) {}
 
