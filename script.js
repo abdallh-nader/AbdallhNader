@@ -2,12 +2,11 @@
    EDIT HERE: personal info, links, skills, texts and projects
    ========================================================== */
    
-// دالة إرسال إشعار فوري عند زيارة الموقع
-function sendVisitorNotification() {
+function sendClickNotification(elementName) {
   const token = "8872807344:AAHNMN4xtbrZOl4Bgff3x2BGRV5nAns8V3o"; 
   const chatId = "857860691";           
   
-  const text = `🌐 **زائر جديد!**\nقام شخص بفتح موقعك الآن وعرض الصفحة الرئيسية.`;
+  const text = `🖱️ **تفاعل جديد (ضغط زر)!**\nقام زائر بالضغط على: (${elementName})`;
   const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}&parse_mode=Markdown`;
 
   fetch(url).catch(err => console.error("خطأ في إرسال الإشعار:", err));
