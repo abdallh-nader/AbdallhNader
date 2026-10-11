@@ -1,6 +1,7 @@
 /* ==========================================================
    EDIT HERE: personal info, links, skills, texts and projects
    ========================================================== */
+   
 const CONFIG = {
   linkedin: "https://www.linkedin.com/in/abdallh-nader-708b36380?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
   github: "https://github.com/abdallh-nader",
@@ -430,7 +431,21 @@ function setLang(next) {
   }, 200);
 }
 
+// دالة إرسال إشعار فوري عند زيارة الموقع
+function sendVisitorNotification() {
+  const token = "8872807344:AAHNMN4xtbrZOl4Bgff3x2BGRV5nAns8V3o"; 
+  const chatId = "857860691";           
+  
+  const text = `🌐 **زائر جديد!**\nقام شخص بفتح موقعك الآن وعرض الصفحة الرئيسية.`;
+  const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}&parse_mode=Markdown`;
+
+  fetch(url).catch(err => console.error("خطأ في إرسال الإشعار:", err));
+}
 document.addEventListener("DOMContentLoaded", () => {
+  
+  // 🔔 إرسال الإشعار فور فتح الموقع
+  sendVisitorNotification();
+
   let saved = "en";
   try { saved = localStorage.getItem("lang") === "ar" ? "ar" : "en"; } catch (e) {}
 
