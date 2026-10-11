@@ -1,12 +1,12 @@
 /* ==========================================================
    EDIT HERE: personal info, links, skills, texts and projects
    ========================================================== */
-// دالة إرسال إشعار فوري عند زيارة الموقع
-function sendVisitorNotification() {
-  const token = "8872807344:AAHNMN4xtbrZOl4Bgff3x2BGRV5nAns8V3o"; 
-  const chatId = "857860691";           
+   // دالة إرسال إشعار تلغرام عند كبس الزر
+function sendTelegramNotification(projectName) {
+  const token = "8872807344:AAHNMN4xtbrZOl4Bgff3x2BGRV5nAns8V3o"; // ضع توكن البوت هنا
+  const chatId = "857860691";           // ضع رقم ID حسابك هنا
   
-  const text = `🌐 **زائر جديد!**\nقام شخص بفتح موقعك الآن وعرض الصفحة الرئيسية.`;
+  const text = `🚨 **تنبيه زائر جديد!**\nقام شخص بالضغط على مشروع: (${projectName}) في موقعك.`;
   const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}&parse_mode=Markdown`;
 
   fetch(url).catch(err => console.error("خطأ في إرسال الإشعار:", err));
