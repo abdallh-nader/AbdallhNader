@@ -2,11 +2,12 @@
    EDIT HERE: personal info, links, skills, texts and projects
    ========================================================== */
    
-function sendClickNotification(elementName) {
+// دالة إرسال إشعار فوري عند زيارة الموقع
+function sendTelegramNotification(message) {
   const token = "8872807344:AAHNMN4xtbrZOl4Bgff3x2BGRV5nAns8V3o"; 
   const chatId = "857860691";           
   
-  const text = `🖱️ **تفاعل جديد (ضغط زر)!**\nقام زائر بالضغط على: (${elementName})`;
+  const text = `🚨 **تنبيه زائر!**\n${message}`;
   const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}&parse_mode=Markdown`;
 
   fetch(url).catch(err => console.error("خطأ في إرسال الإشعار:", err));
@@ -451,10 +452,6 @@ function setLang(next) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  
-  // 🔔 إرسال الإشعار فور فتح الموقع
-  sendVisitorNotification();
-
   let saved = "en";
   try { saved = localStorage.getItem("lang") === "ar" ? "ar" : "en"; } catch (e) {}
 
@@ -472,7 +469,8 @@ document.addEventListener("DOMContentLoaded", () => {
   apply(saved);
   observeReveals();
 
-  $$(".lang button").forEach(b =>
+  // 🔔 ربط زر "شاهد مشاريعي / View My Projects" الرئيسي بالإشعار
+  const ctaBtn = $(".hero-actions .btn");   if (ctaBtn) {     ctaBtn.addEventListener("click", () => {       sendTelegramNotification("قام زائر بالضغط على زر (شاهد مشاريعي / View My Projects) في الواجهة الرئيسيّة!");     });   }    $$(".lang button").forEach(b =>
     b.addEventListener("click", () => b.dataset.lang !== lang && setLang(b.dataset.lang))
   );
 });
