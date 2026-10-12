@@ -84,8 +84,7 @@ const TEXT = {
 const PROJECTS = [
   {
     title: { 
-      en: "Golden Ages", 
-      ar: "العصور الذهبية" 
+      en: "Golden Ages",ar: "العصور الذهبية" 
     },
     description: {
       en: "A 3D puzzle-adventure video game featuring Arab historical figures, built with Unreal Engine 5.",
@@ -286,7 +285,7 @@ function initModal() {
     
     // زر التحميل الرئيسي (رابط جوجل درايف للعبة 5GB)
     $("#m-actions").innerHTML =
-      `<a class="btn" href="${p.url}" target="_blank" rel="noopener noreferrer">${p.livePreviewVideo ? (lang === "ar" ? "تحميل اللعبة (5GB)" : "Download Game (5GB)") : t.m_live}</a>` +
+      `<a class="btn" href="${p.url}" target="_blank" rel="noopener noreferrer">${p.livePreviewVideo ? (lang === "ar" ? "تحميل اللعبة " : "Download Game") : t.m_live}</a>` +
       `<a class="btn ghost" href="${p.repo || CONFIG.github}" target="_blank" rel="noopener noreferrer">${t.m_repo}</a>`;
       
     // زر المعاينة الحية
