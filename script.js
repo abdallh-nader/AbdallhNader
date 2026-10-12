@@ -83,6 +83,23 @@ const TEXT = {
    tech: badges shown in the modal | repo: GitHub link (falls back to your profile) */
 const PROJECTS = [
   {
+    title: { 
+      en: "Golden Ages", 
+      ar: "العصور الذهبية" 
+    },
+    description: {
+      en: "A 3D puzzle-adventure video game featuring Arab historical figures, built with Unreal Engine 5.",
+      ar: "لعبة مغامرات وألغاز ثلاثية الأبعاد ثلاثية الأبعاد تستعرض شخصيات تاريخية عربية، مطورة بـ Unreal Engine 5."
+    },
+    image: "project5.jpg", 
+    url: "", 
+    repo: "", 
+    tech: ["Unreal Engine 5", "C++", "Blueprints", "3D Modeling"],
+    
+    // إضافة خاصة لتشغيل فيديو المعاينة الحية (Gameplay Trailer) عند الضغط على Load live preview
+    livePreviewVideo: "https://youtu.be/ORIcAE45cbA" 
+  },
+  {
     title: { en: "Virtual Chemistry Lab", ar: "مختبر الكيمياء الافتراضي" },
     description: {
       en: "An interactive virtual chemistry laboratory for running experiments safely in the browser.",
@@ -257,6 +274,7 @@ function initSkills() {
 }
 
 /* ---------- Project modal ---------- */
+/* ---------- Project modal ---------- */
 function initModal() {
   const modal = $("#modal");
   let current = null;
@@ -280,12 +298,24 @@ function initModal() {
   };
   $("#m-close").addEventListener("click", close);
   modal.addEventListener("click", e => { if (!e.target.closest(".modal-box")) close(); }); // backdrop click
+  
+  // تعديل زر المعاينة الحية ليدعم ألعاب الفيديو أو المواقع العادية
   modal.addEventListener("click", e => {
     if (e.target.id !== "m-load") return;
-    $("#m-preview").innerHTML =
-      `<div class="frame"><iframe src="${current.url}" title="${current.title[lang]}" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe></div>` +
-      `<p class="note">${TEXT[lang].m_note}</p>`;
+    
+    if (current.livePreviewVideo) {
+      // إذا كان المشروع يحتوي على فيديو معاينة (خاص بلعبة Golden Ages)
+      $("#m-preview").innerHTML =
+        `<div class="frame"><iframe src="${current.livePreviewVideo}?autoplay=1" title="${current.title[lang]}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>` +
+        `<p class="note">${TEXT[lang].m_note || "Watch gameplay preview"}</p>`;
+    } else {
+      // للمواقع الأخرى التي تعمل عبر iframe
+      $("#m-preview").innerHTML =
+        `<div class="frame"><iframe src="${current.url}" title="${current.title[lang]}" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe></div>` +
+        `<p class="note">${TEXT[lang].m_note}</p>`;
+    }
   });
+
   modal.addEventListener("close", () => {          // also fires on Esc
     document.body.classList.remove("lock");
     modal.classList.remove("show");
@@ -467,3 +497,31 @@ document.addEventListener("DOMContentLoaded", () => {
     b.addEventListener("click", () => b.dataset.lang !== lang && setLang(b.dataset.lang))
   );
 });
+
+function handleLoadPreview(project) {
+    const previewContainer = document.getElementById(`preview-${project.id}`);
+    
+    if (project.livePreviewVideo) {
+        // إذا كانت لعبة ولها فيديو معاينة (Gameplay)
+        previewContainer.innerHTML = `
+            <iframe 
+                src="${project.livePreviewVideo}?autoplay=1" 
+                width="100%" 
+                height="100%" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        `;
+    } else {
+        // إذا كان موقع ويب عادي يعمل بـ iframe
+        previewContainer.innerHTML = `
+            <iframe 
+                src="${project.url}" 
+                width="100%" 
+                height="100%" 
+                frameborder="0">
+            </iframe>
+        `;
+    }
+}
