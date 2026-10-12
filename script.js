@@ -92,7 +92,7 @@ const PROJECTS = [
       ar: "لعبة مغامرات وألغاز ثلاثية الأبعاد ثلاثية الأبعاد تستعرض شخصيات تاريخية عربية، مطورة بـ Unreal Engine 5."
     },
     image: "project5.jpg", 
-    url: "", 
+    url: "https://drive.google.com/file/d/1v-KlwJG2_nrjZbjL-4_9tf9sjXfCH8ly/view?usp=drive_link", 
     repo: "", 
     tech: ["Unreal Engine 5", "C++", "Blueprints", "3D Modeling"],
     
