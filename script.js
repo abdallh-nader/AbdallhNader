@@ -97,7 +97,7 @@ const PROJECTS = [
     tech: ["Unreal Engine 5", "C++", "Blueprints", "3D Modeling", "Animation", "Level Design","photostop","Blender"],
     
     // إضافة خاصة لتشغيل فيديو المعاينة الحية (Gameplay Trailer) عند الضغط على Load live preview
-    livePreviewVideo: "https://www.youtube.com/embed/ORIcAE45cbA" 
+    livePreviewVideo: "https://www.youtube.com/embed/ieRcSJAlFd0" 
   },
   {
     title: { en: "Virtual Chemistry Lab", ar: "مختبر الكيمياء الافتراضي" },
