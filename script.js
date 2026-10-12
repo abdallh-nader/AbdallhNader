@@ -94,7 +94,7 @@ const PROJECTS = [
     image: "project5.jpg", 
     url: "https://drive.google.com/file/d/1v-KlwJG2_nrjZbjL-4_9tf9sjXfCH8ly/view?usp=drive_link", 
     repo: "", 
-    tech: ["Unreal Engine 5", "C++", "Blueprints", "3D Modeling"],
+    tech: ["Unreal Engine 5", "C++", "Blueprints", "3D Modeling", "Animation", "Level Design","photostop","Blender"],
     
     // إضافة خاصة لتشغيل فيديو المعاينة الحية (Gameplay Trailer) عند الضغط على Load live preview
     livePreviewVideo: "https://youtu.be/ORIcAE45cbA" 
@@ -274,7 +274,6 @@ function initSkills() {
 }
 
 /* ---------- Project modal ---------- */
-/* ---------- Project modal ---------- */
 function initModal() {
   const modal = $("#modal");
   let current = null;
@@ -284,45 +283,75 @@ function initModal() {
     $("#m-title").textContent = p.title[lang].trim();
     $("#m-desc").textContent = p.description[lang];
     $("#m-stack").innerHTML = p.tech.map(x => `<li>${x}</li>`).join("");
+    
+    // زر التحميل الرئيسي (رابط جوجل درايف للعبة 5GB)
     $("#m-actions").innerHTML =
-      `<a class="btn" href="${p.url}" target="_blank" rel="noopener noreferrer">${t.m_live}</a>` +
+      `<a class="btn" href="${p.url}" target="_blank" rel="noopener noreferrer">${p.livePreviewVideo ? (lang === "ar" ? "تحميل اللعبة (5GB)" : "Download Game (5GB)") : t.m_live}</a>` +
       `<a class="btn ghost" href="${p.repo || CONFIG.github}" target="_blank" rel="noopener noreferrer">${t.m_repo}</a>`;
+      
+    // زر المعاينة الحية
     $("#m-preview").innerHTML = `<button class="btn ghost" type="button" id="m-load">${t.m_preview}</button>`;
+    
     modal.showModal();
     document.body.classList.add("lock");
     requestAnimationFrame(() => requestAnimationFrame(() => modal.classList.add("show")));
   };
+
   const close = () => {
     modal.classList.remove("show");
     setTimeout(() => modal.open && modal.close(), reduceMotion ? 0 : 280);
   };
+
   $("#m-close").addEventListener("click", close);
   modal.addEventListener("click", e => { if (!e.target.closest(".modal-box")) close(); }); // backdrop click
-  
-  // تعديل زر المعاينة الحية ليدعم ألعاب الفيديو أو المواقع العادية
+
+  // هنا يتم تفعيل المعاينة الحية عند الضغط على زر m-load
   modal.addEventListener("click", e => {
     if (e.target.id !== "m-load") return;
-    
+
     if (current.livePreviewVideo) {
-      // إذا كان المشروع يحتوي على فيديو معاينة (خاص بلعبة Golden Ages)
-      $("#m-preview").innerHTML =
-        `<div class="frame"><iframe src="${current.livePreviewVideo}?autoplay=1" title="${current.title[lang]}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>` +
-        `<p class="note">${TEXT[lang].m_note || "Watch gameplay preview"}</p>`;
+      // إذا كانت لعبة ولها فيديو معاينة (Gameplay)
+      $("#m-preview").innerHTML = `
+        <div class="frame">
+          <iframe 
+            src="${current.livePreviewVideo}?autoplay=1" 
+            title="${current.title[lang]}"
+            loading="lazy"
+            width="100%" 
+            height="100%" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
+        <p class="note">${lang === "ar" ? "استعراض أسلوب اللعب (Gameplay Preview)" : "Gameplay Preview"}</p>
+      `;
     } else {
-      // للمواقع الأخرى التي تعمل عبر iframe
-      $("#m-preview").innerHTML =
-        `<div class="frame"><iframe src="${current.url}" title="${current.title[lang]}" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe></div>` +
-        `<p class="note">${TEXT[lang].m_note}</p>`;
+      // إذا كان موقع ويب عادي يعمل بـ iframe
+      $("#m-preview").innerHTML = `
+        <div class="frame">
+          <iframe 
+            src="${current.url}" 
+            title="${current.title[lang]}"
+            loading="lazy"
+            width="100%" 
+            height="100%" 
+            frameborder="0"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups">
+          </iframe>
+        </div>
+        <p class="note">${TEXT[lang].m_note}</p>
+      `;
     }
   });
 
-  modal.addEventListener("close", () => {          // also fires on Esc
+  modal.addEventListener("close", () => {
     document.body.classList.remove("lock");
     modal.classList.remove("show");
-    $("#m-preview").innerHTML = "";                // stops the iframe
+    $("#m-preview").innerHTML = ""; // إيقاف وتشغيل الفيديو عند الإغلاق
   });
 }
-
+ 
 /* ---------- Typewriter ---------- */
 function startTypewriter() {
   clearTimeout(typerTimer);
