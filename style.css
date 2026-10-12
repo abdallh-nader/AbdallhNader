@@ -276,3 +276,13 @@ h2::after { content: ""; display: block; width: 48px; height: 3px; margin-top: .
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* تغيير شكل الماوس في الموقع كله ليصبح مخصصاً للمطورين */
+body {
+    cursor: default;
+}
+
+/* عند الوقوف على الأزرار أو الروابط يتحول الماوس لشكل الأوامر البرمجية */
+a, button, .card {
+    cursor: pointer;
+}
